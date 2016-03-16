@@ -7,5 +7,6 @@ import java.util.*
  */
 
 class CategoryResults {
+    var category: Category = Category.ANDROID
     var results: List<GankItem> = ArrayList()
 }

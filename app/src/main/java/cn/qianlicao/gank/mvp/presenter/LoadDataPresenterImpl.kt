@@ -1,26 +1,45 @@
 package cn.qianlicao.gank.mvp.presenter
 
 import cn.qianlicao.gank.data.gank.Category
+import cn.qianlicao.gank.data.gank.CategoryResults
 import cn.qianlicao.gank.data.gank.DayResults
+import cn.qianlicao.gank.mvp.model.GankDataLoader
+import cn.qianlicao.gank.mvp.model.GankDataLoaderImpl
+import cn.qianlicao.gank.mvp.view.BaseView
+import cn.qianlicao.gank.mvp.view.CategoryView
+import cn.qianlicao.gank.mvp.view.DayView
 
 /**
  * Created by dongyayun on 16/3/13.
  */
 class LoadDataPresenterImpl : LoadDataPresenter {
-    override fun loadCategory(category: Category, page: Int) {
-        throw UnsupportedOperationException()
+
+    lateinit var bindView: BaseView;
+
+    val loader: GankDataLoader = GankDataLoaderImpl(this)
+
+
+    override fun bind(view: BaseView) {
+        bindView = view
     }
 
-    override fun loadCategoryFinish(category: Category) {
-        throw UnsupportedOperationException()
+    override fun loadCategory(category: Category, page: Int) {
+        loader.loadCategory(category, page)
+    }
+
+    override fun loadCategoryFinish(results: CategoryResults) {
+        (bindView as CategoryView).loadCategoryFinish(results)
     }
 
     override fun loadDay(year: Int, month: Int, day: Int) {
-        throw UnsupportedOperationException()
+        loader.loadDay(year, month, day)
     }
 
     override fun loadDayFinish(dayResults: DayResults) {
-        throw UnsupportedOperationException()
+        (bindView as DayView).loadDayFinish(dayResults)
     }
 
+    override fun onError(e: Throwable) {
+        bindView.onError(e)
+    }
 }

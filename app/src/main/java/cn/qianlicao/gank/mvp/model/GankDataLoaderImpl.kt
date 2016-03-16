@@ -5,6 +5,7 @@ import cn.qianlicao.gank.data.gank.Category
 import cn.qianlicao.gank.data.gank.CategoryResults
 import cn.qianlicao.gank.data.gank.DayResults
 import cn.qianlicao.gank.data.gank.GankItem
+import cn.qianlicao.gank.mvp.presenter.LoadDataPresenter
 import cn.qianlicao.gank.retrofit.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,13 +14,16 @@ import rx.Observable
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import java.util.*
 
 /**
  * Created by dongyayun on 16/3/13.
  */
-class GankDataLoaderImpl : GankDataLoader {
+class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
 
     val TAG = "GankDataLoaderImpl"
+
+    val presenter: LoadDataPresenter = p
 
     override fun loadDay(year: Int, month: Int, day: Int) {
         throw UnsupportedOperationException()
@@ -28,7 +32,7 @@ class GankDataLoaderImpl : GankDataLoader {
 
     override fun loadCategory(category: Category, page: Int) {
         RetrofitClient.clientRx.
-                getCategoryData(Category.ANDROID.cname, page)
+                getCategoryData(category.cname, page)
                 .subscribeOn(Schedulers.io())
                 .map { result -> result.results }
                 .flatMap { data -> Observable.from(data) }
@@ -38,7 +42,10 @@ class GankDataLoaderImpl : GankDataLoader {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<List<GankItem>>() {
                     override fun onNext(p0: List<GankItem>?) {
-
+                        var categoryResults: CategoryResults = CategoryResults()
+                        (categoryResults.results as ArrayList).addAll(p0!!)
+                        categoryResults.category = category
+                        presenter.loadCategoryFinish(categoryResults)
                     }
 
                     override fun onCompleted() {
