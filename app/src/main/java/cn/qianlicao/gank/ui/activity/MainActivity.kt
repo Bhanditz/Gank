@@ -1,4 +1,4 @@
-package cn.qianlicao.gank.activity
+package cn.qianlicao.gank.ui.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,7 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import cn.qianlicao.gank.R
 import cn.qianlicao.gank.data.gank.Category
-import cn.qianlicao.gank.fragment.RecyclerViewFragment
+import cn.qianlicao.gank.ui.fragment.RecyclerViewFragment
 import com.github.florent37.materialviewpager.MaterialViewPager
 import com.github.florent37.materialviewpager.header.HeaderDesign
 

@@ -1,4 +1,4 @@
-package cn.qianlicao.gank.fragment
+package cn.qianlicao.gank.ui.fragment
 
 /**
  * Created by dongyayun on 16/3/14.

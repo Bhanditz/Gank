@@ -1,4 +1,4 @@
-package cn.qianlicao.gank.activity
+package cn.qianlicao.gank.ui.activity
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
