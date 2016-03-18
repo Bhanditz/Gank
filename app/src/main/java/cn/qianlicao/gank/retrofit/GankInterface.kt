@@ -10,7 +10,7 @@ import retrofit2.http.Path
  * Created by dongyayun on 16/3/12.
  */
 interface GankInterface {
-    @GET("api/data/{category}/" + 10 + "/{page}") abstract fun getCategoryData(
+    @GET("api/data/{category}/" + 15 + "/{page}") abstract fun getCategoryData(
             @Path("category") category: String,
             @Path("page") page: Int): Call<CategoryResults>
 

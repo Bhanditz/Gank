@@ -33,7 +33,22 @@ class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : Recy
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {
 
-        holder.des.text = results.get(position).desc
+        val item = results.get(position)
+
+        val des: String
+
+        if (item.desc!!.length > 25)
+            des = item.desc!!.substring(0, 25) + "..."
+        else
+            des = item.desc!!
+
+        holder.des.text = item.desc
+
+        val year = item.publishedAt!!.year + 1990
+        val month = item.publishedAt!!.month + 1
+
+        holder.publishTime.text = "发布于:" + year + "年" + month + "月" + item.publishedAt?.date + "日"
+        holder.author.text = "作者:" + item.who
 
 
     }
@@ -61,11 +76,15 @@ class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : Recy
 
     class myViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var des: TextView
+        lateinit var publishTime: TextView
+        lateinit var author: TextView
         lateinit var card: CardView
 
         init {
             des = view.findViewById(R.id.des) as TextView
             card = view.findViewById(R.id.card_view) as CardView
+            author = view.findViewById(R.id.author) as TextView
+            publishTime = view.findViewById(R.id.publishTime) as TextView
 
             des.onClick { des.text = "OnClick" }
         }

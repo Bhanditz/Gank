@@ -75,16 +75,16 @@ class MainActivity : BaseActivity() {
 
         var toolbar: Toolbar = mViewPager.toolbar;
 
-        if (toolbar != null) {
+        if (toolbar != null && supportActionBar != null) {
             setSupportActionBar(toolbar);
 
-            var actionBar: ActionBar? = supportActionBar;
-            actionBar!!.setDisplayHomeAsUpEnabled(true);
-            actionBar!!.setDisplayShowHomeEnabled(true);
-            actionBar!!.setDisplayShowTitleEnabled(true);
-            actionBar!!.setDisplayUseLogoEnabled(false);
-            actionBar!!.setHomeButtonEnabled(true);
-            actionBar!!.title = ""
+            var actionBar: ActionBar = supportActionBar!!;
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.title = ""
         }
     }
 }

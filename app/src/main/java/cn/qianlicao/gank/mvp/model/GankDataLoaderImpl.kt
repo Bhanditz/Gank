@@ -37,7 +37,7 @@ class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
                 .map { result -> result.results }
                 .flatMap { data -> Observable.from(data) }
                 .observeOn(Schedulers.computation())
-                .toSortedList { gankItem, gankItem1 -> gankItem.publishedAt?.compareTo(gankItem1.publishedAt) }
+                .toSortedList { gankItem, gankItem1 -> gankItem1.publishedAt?.compareTo(gankItem.publishedAt) }
                 .doOnNext { items -> items.forEach { Log.d(TAG, it.desc + it.publishedAt.toString()) } }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<List<GankItem>>() {

@@ -11,7 +11,7 @@ import rx.Observable
  */
 
 interface GankInterfaceRx {
-    @GET("api/data/{category}/" + 10 + "/{page}") abstract fun getCategoryData(
+    @GET("api/data/{category}/" + 20 + "/{page}") abstract fun getCategoryData(
             @Path("category") category: String,
             @Path("page") page: Int): Observable<CategoryResults>
 

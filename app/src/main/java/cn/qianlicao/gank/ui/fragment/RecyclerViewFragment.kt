@@ -25,7 +25,7 @@ import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapte
 /**
  * Created by florentchampigny on 24/04/15.
  */
-class RecyclerViewFragment private constructor(c: Category) : Fragment(), CategoryView {
+class RecyclerViewFragment constructor(c: Category) : Fragment(), CategoryView {
 
     lateinit var mRecyclerView: RecyclerView
     lateinit var mAdapter: RecyclerViewMaterialAdapter
