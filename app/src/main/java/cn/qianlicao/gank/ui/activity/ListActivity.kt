@@ -14,6 +14,7 @@ import cn.qianlicao.gank.listens.recyclerViewOnClickListern
 import cn.qianlicao.gank.mvp.presenter.LoadDataPresenter
 import cn.qianlicao.gank.mvp.presenter.LoadDataPresenterImpl
 import cn.qianlicao.gank.mvp.view.CategoryView
+import cn.qianlicao.gank.util.SaveResults
 import org.jetbrains.anko.toast
 
 class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
@@ -46,7 +47,15 @@ class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
 
                 val category = menuItems.get(p0)
 
-                loadDataPresenter.loadCategory(category, 1)
+                val result = SaveResults.read(category)
+
+                if (result.results.size == 0) {
+                    loadDataPresenter.loadCategory(category, 1)
+                } else {
+                    loadCategoryFinish(result)
+                }
+
+
 
                 toast(category.cname + " is click")
                 return true
@@ -63,8 +72,9 @@ class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
         recyclerView.adapter = realAdapter
     }
 
-    override fun loadCategoryFinish(results: CategoryResults) {
-        realAdapter.clear()
+    override fun loadCategoryFinish(results: CategoryResults, isloadMore: Boolean) {
+        if (!isloadMore)
+            realAdapter.clear()
         realAdapter.addAll(results.results)
     }
 

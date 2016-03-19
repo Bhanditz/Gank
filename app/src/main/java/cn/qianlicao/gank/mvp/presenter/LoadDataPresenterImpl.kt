@@ -27,8 +27,8 @@ class LoadDataPresenterImpl : LoadDataPresenter {
         loader.loadCategory(category, page)
     }
 
-    override fun loadCategoryFinish(results: CategoryResults) {
-        (bindView as CategoryView).loadCategoryFinish(results)
+    override fun loadCategoryFinish(results: CategoryResults, isLoadMore: Boolean) {
+        (bindView as CategoryView).loadCategoryFinish(results, isLoadMore)
     }
 
     override fun loadDay(year: Int, month: Int, day: Int) {

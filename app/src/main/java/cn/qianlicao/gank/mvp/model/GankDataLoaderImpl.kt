@@ -7,6 +7,7 @@ import cn.qianlicao.gank.data.gank.DayResults
 import cn.qianlicao.gank.data.gank.GankItem
 import cn.qianlicao.gank.mvp.presenter.LoadDataPresenter
 import cn.qianlicao.gank.retrofit.RetrofitClient
+import cn.qianlicao.gank.util.SaveResults
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +31,7 @@ class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
     }
 
 
-    override fun loadCategory(category: Category, page: Int) {
+    override fun loadCategory(category: Category, page: Int, isLoadMore: Boolean) {
         RetrofitClient.clientRx.
                 getCategoryData(category.cname, page)
                 .subscribeOn(Schedulers.io())
@@ -39,13 +40,20 @@ class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
                 .observeOn(Schedulers.computation())
                 .toSortedList { gankItem, gankItem1 -> gankItem1.publishedAt?.compareTo(gankItem.publishedAt) }
                 .doOnNext { items -> items.forEach { Log.d(TAG, it.desc + it.publishedAt.toString()) } }
+                .doOnNext { items ->
+                    var categoryResults: CategoryResults = CategoryResults()
+                    (categoryResults.results as ArrayList).addAll(items!!)
+                    categoryResults.category = category
+
+                    SaveResults.save(categoryResults, isLoadMore)
+                }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<List<GankItem>>() {
                     override fun onNext(p0: List<GankItem>?) {
                         var categoryResults: CategoryResults = CategoryResults()
                         (categoryResults.results as ArrayList).addAll(p0!!)
                         categoryResults.category = category
-                        presenter.loadCategoryFinish(categoryResults)
+                        presenter.loadCategoryFinish(categoryResults, isLoadMore)
                     }
 
                     override fun onCompleted() {

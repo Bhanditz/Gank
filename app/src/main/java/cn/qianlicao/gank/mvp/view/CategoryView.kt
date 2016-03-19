@@ -6,5 +6,5 @@ import cn.qianlicao.gank.data.gank.CategoryResults
  * Created by dongyayun on 16/3/16.
  */
 open interface CategoryView : BaseView {
-    fun loadCategoryFinish(results: CategoryResults)
+    fun loadCategoryFinish(results: CategoryResults, isLoadMore: Boolean = false)
 }

@@ -10,7 +10,7 @@ import cn.qianlicao.gank.mvp.view.BaseView
  */
 interface LoadDataPresenter {
     fun loadCategory(category: Category, page: Int)
-    fun loadCategoryFinish(results: CategoryResults)
+    fun loadCategoryFinish(results: CategoryResults, sLoadMore: Boolean = false)
     fun loadDay(year: Int, month: Int, day: Int)
     fun loadDayFinish(dayResults: DayResults)
     fun bind(view: BaseView)

@@ -1,13 +1,12 @@
 package cn.qianlicao.gank.data.gank
 
-import android.os.Parcel
-import android.os.Parcelable
+import java.io.Serializable
 import java.util.*
 
 /**
  * Created by dongyayun on 16/3/13.
  */
-class GankItem() : BaseData(), Parcelable {
+class GankItem() : BaseData(), Serializable {
     /**
      * _id : 56e23cea67765966681b3a29
      * _ns : ganhuo
@@ -32,24 +31,4 @@ class GankItem() : BaseData(), Parcelable {
     var isUsed: Boolean = false
     var who: String? = null
 
-    constructor(source: Parcel) : this()
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-    }
-
-    companion object {
-        @JvmField final val CREATOR: Parcelable.Creator<GankItem> = object : Parcelable.Creator<GankItem> {
-            override fun createFromParcel(source: Parcel): GankItem {
-                return GankItem(source)
-            }
-
-            override fun newArray(size: Int): Array<GankItem?> {
-                return arrayOfNulls(size)
-            }
-        }
-    }
 }
