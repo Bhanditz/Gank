@@ -9,12 +9,13 @@ import cn.qianlicao.gank.R
 import cn.qianlicao.gank.data.adapter.CategoryItemsAdapter
 import cn.qianlicao.gank.data.gank.Category
 import cn.qianlicao.gank.data.gank.CategoryResults
+import cn.qianlicao.gank.listens.recyclerViewOnClickListern
 import cn.qianlicao.gank.mvp.presenter.LoadDataPresenter
 import cn.qianlicao.gank.mvp.presenter.LoadDataPresenterImpl
 import cn.qianlicao.gank.mvp.view.CategoryView
 import org.jetbrains.anko.toast
 
-class ListActivity : BaseActivity(), CategoryView {
+class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
 
     private val menuItems = Category.values()
 
@@ -64,6 +65,8 @@ class ListActivity : BaseActivity(), CategoryView {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         realAdapter = CategoryItemsAdapter(categoryResults);
+        realAdapter.itemOnclickListener = this
+
         recyclerView.adapter = realAdapter
     }
 
@@ -78,6 +81,11 @@ class ListActivity : BaseActivity(), CategoryView {
 
     override fun onError(e: Throwable) {
         throw UnsupportedOperationException()
+    }
+
+    override fun onClick(pos: Int) {
+        val item = categoryResults.results.get(pos)
+        toast(item.desc + item.who)
     }
 
 }

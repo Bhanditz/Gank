@@ -9,6 +9,7 @@ import android.widget.TextView
 import cn.qianlicao.gank.R
 import cn.qianlicao.gank.data.gank.CategoryResults
 import cn.qianlicao.gank.data.gank.GankItem
+import cn.qianlicao.gank.listens.recyclerViewOnClickListern
 import org.jetbrains.anko.onClick
 import java.util.*
 
@@ -16,6 +17,8 @@ import java.util.*
  * Created by dongyayun on 16/3/14.
  */
 class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : RecyclerView.Adapter<CategoryItemsAdapter.myViewHolder>() {
+
+    var itemOnclickListener: recyclerViewOnClickListern? = null
 
     var results: ArrayList<GankItem> = categoryResults.results  as ArrayList<GankItem>
 
@@ -35,13 +38,6 @@ class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : Recy
 
         val item = results.get(position)
 
-        val des: String
-
-        if (item.desc!!.length > 25)
-            des = item.desc!!.substring(0, 25) + "..."
-        else
-            des = item.desc!!
-
         holder.des.text = item.desc
 
         val year = item.publishedAt!!.year + 1990
@@ -50,6 +46,8 @@ class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : Recy
         holder.publishTime.text = "发布于:" + year + "年" + month + "月" + item.publishedAt?.date + "日"
         holder.author.text = "作者:" + item.who
 
+
+        holder.card.onClick { itemOnclickListener?.onClick(position) }
 
     }
 
@@ -86,7 +84,6 @@ class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : Recy
             card = view.findViewById(R.id.card_view) as CardView
             author = view.findViewById(R.id.author) as TextView
             publishTime = view.findViewById(R.id.publishTime) as TextView
-            des.onClick { des.text = "OnClick" }
         }
 
 
