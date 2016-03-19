@@ -13,6 +13,7 @@ class CategoryResults : Serializable {
         @JvmField val serialVersionUID = 6201933920870624595L
     }
 
+    var pages: Int = 0
     var category: Category = Category.ANDROID
     var results: List<GankItem> = ArrayList()
 }

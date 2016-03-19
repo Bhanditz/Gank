@@ -44,7 +44,7 @@ class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
                     var categoryResults: CategoryResults = CategoryResults()
                     (categoryResults.results as ArrayList).addAll(items!!)
                     categoryResults.category = category
-
+                    categoryResults.pages = page
                     SaveResults.save(categoryResults, isLoadMore)
                 }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -53,6 +53,7 @@ class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
                         var categoryResults: CategoryResults = CategoryResults()
                         (categoryResults.results as ArrayList).addAll(p0!!)
                         categoryResults.category = category
+                        categoryResults.pages = page
                         presenter.loadCategoryFinish(categoryResults, isLoadMore)
                     }
 

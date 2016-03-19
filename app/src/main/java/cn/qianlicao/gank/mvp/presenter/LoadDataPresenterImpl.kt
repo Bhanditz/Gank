@@ -23,8 +23,8 @@ class LoadDataPresenterImpl : LoadDataPresenter {
         bindView = view
     }
 
-    override fun loadCategory(category: Category, page: Int) {
-        loader.loadCategory(category, page)
+    override fun loadCategory(category: Category, page: Int, isLoadMore: Boolean) {
+        loader.loadCategory(category, page, isLoadMore)
     }
 
     override fun loadCategoryFinish(results: CategoryResults, isLoadMore: Boolean) {

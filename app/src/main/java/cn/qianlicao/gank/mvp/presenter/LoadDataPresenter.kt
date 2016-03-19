@@ -9,7 +9,7 @@ import cn.qianlicao.gank.mvp.view.BaseView
  * Created by dongyayun on 16/3/13.
  */
 interface LoadDataPresenter {
-    fun loadCategory(category: Category, page: Int)
+    fun loadCategory(category: Category, page: Int, sLoadMore: Boolean = false)
     fun loadCategoryFinish(results: CategoryResults, sLoadMore: Boolean = false)
     fun loadDay(year: Int, month: Int, day: Int)
     fun loadDayFinish(dayResults: DayResults)
