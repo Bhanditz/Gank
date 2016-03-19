@@ -65,7 +65,7 @@ class WebViewActivity : BaseActivity() {
         val uri: Uri = Uri.parse(currentUrl);
         val intent1: Intent = Intent(Intent.ACTION_VIEW, uri);
         try {
-            startActivity(intent1);
+            startActivitySafety(intent1);
         } catch (e: Exception) {
             toast("没装浏览器?")
         }

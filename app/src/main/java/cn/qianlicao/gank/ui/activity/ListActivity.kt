@@ -17,7 +17,6 @@ import cn.qianlicao.gank.mvp.presenter.LoadDataPresenter
 import cn.qianlicao.gank.mvp.presenter.LoadDataPresenterImpl
 import cn.qianlicao.gank.mvp.view.CategoryView
 import cn.qianlicao.gank.util.SaveResults
-import org.jetbrains.anko.toast
 
 class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
 
@@ -131,8 +130,7 @@ class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
 
         val intent = Intent(this, WebViewActivity::class.java)
         intent.putExtra("url", item.url)
-
-        startActivity(intent)
+        startActivitySafety(intent)
     }
 
 }

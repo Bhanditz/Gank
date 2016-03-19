@@ -20,9 +20,7 @@ open abstract class BaseActivity : AppCompatActivity() {
         setContentView(myContentViewId())
     }
 
-    fun startActivitySafety(clazz: Class<*>) {
-        var intent: Intent = Intent(this, clazz);
-
+    fun startActivitySafety(intent: Intent) {
         try {
             startActivity(intent)
         } catch(e: ActivityNotFoundException) {
