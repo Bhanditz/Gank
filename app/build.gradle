@@ -38,6 +38,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'org.jetbrains.anko:anko-sdk15:0.8.3'
     compile 'com.android.support:support-v13:23.1.1'
+    compile 'com.daimajia.numberprogressbar:library:1.2@aar'
 }
 buildscript {
     ext.kotlin_version = '1.0.1'

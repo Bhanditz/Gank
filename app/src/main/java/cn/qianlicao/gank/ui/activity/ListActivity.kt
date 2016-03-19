@@ -1,5 +1,6 @@
 package cn.qianlicao.gank.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.ActionBar
 import android.support.v7.widget.LinearLayoutManager
@@ -26,25 +27,18 @@ class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
 
     lateinit var realAdapter: CategoryItemsAdapter
 
-
     override fun myContentViewId() = R.layout.activity_list
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initActionBar()
         initRecyclerView()
-
-
         loadDataPresenter.bind(this)
-
     }
 
     fun initActionBar() {
         supportActionBar?.navigationMode = ActionBar.NAVIGATION_MODE_LIST
         supportActionBar?.title = ""
-
-
         val adatper: ArrayAdapter<String> = ArrayAdapter(this, R.layout.category_menu_item, R.id.menu_list_item, menuItems.map { it -> it.cname })
 
         supportActionBar?.setListNavigationCallbacks(adatper, object : ActionBar.OnNavigationListener {
@@ -66,7 +60,6 @@ class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
         recyclerView.setHasFixedSize(true)
         realAdapter = CategoryItemsAdapter(categoryResults);
         realAdapter.itemOnclickListener = this
-
         recyclerView.adapter = realAdapter
     }
 
@@ -86,6 +79,11 @@ class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
     override fun onClick(pos: Int) {
         val item = categoryResults.results.get(pos)
         toast(item.desc + item.who)
+
+        val intent = Intent(this, WebViewActivity::class.java)
+        intent.putExtra("url", item.url)
+
+        startActivity(intent)
     }
 
 }

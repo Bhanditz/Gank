@@ -1,6 +1,5 @@
 package cn.qianlicao.gank.ui.activity
 
-import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
@@ -21,7 +20,7 @@ open abstract class BaseActivity : AppCompatActivity() {
         setContentView(myContentViewId())
     }
 
-    fun startActivitySafety(clazz: Class<Activity>) {
+    fun startActivitySafety(clazz: Class<*>) {
         var intent: Intent = Intent(this, clazz);
 
         try {
