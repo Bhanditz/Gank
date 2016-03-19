@@ -52,7 +52,6 @@ class WebViewActivity : BaseActivity() {
 
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        toast(item.toString() + "show" + "id = " + item?.itemId)
 
         when (item?.title) {
             "通过浏览器打开" -> startBrowser()

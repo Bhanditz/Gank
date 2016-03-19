@@ -45,7 +45,8 @@ class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
                     (categoryResults.results as ArrayList).addAll(items!!)
                     categoryResults.category = category
                     categoryResults.pages = page
-                    SaveResults.save(categoryResults, isLoadMore)
+                    if (!isLoadMore)
+                        SaveResults.save(categoryResults)
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Subscriber<List<GankItem>>() {
@@ -69,19 +70,19 @@ class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
 
     fun testApi() {
         var call: Call<CategoryResults> = RetrofitClient.client.getCategoryData(Category.ANDROID.cname, 10)
-        //Log.d("Testttt", call.toString())
+        //Log.d(TAG, call.toString())
 
         call.enqueue(object : Callback<CategoryResults> {
             override fun onResponse(p0: Call<CategoryResults>?, p1: Response<CategoryResults>?) {
 
                 val l = p1?.body();
 
-                l?.results!!.forEach { Log.d("Testttt", it.desc) }
+                l?.results!!.forEach { Log.d(TAG, it.desc) }
             }
 
             override fun onFailure(p0: Call<CategoryResults>?, p1: Throwable?) {
 
-                Log.d("Testttt", p1.toString())
+                Log.d(TAG, p1.toString())
             }
 
         })
@@ -93,56 +94,56 @@ class GankDataLoaderImpl constructor(p: LoadDataPresenter) : GankDataLoader {
             override fun onResponse(p0: Call<DayResults>?, p1: Response<DayResults>?) {
 
 
-                Log.d("Testttt", p1!!.headers().toString())
+                Log.d(TAG, p1!!.headers().toString())
 
 
-                Log.d("Testttt", p1!!.raw().code().toString())
+                Log.d(TAG, p1!!.raw().code().toString())
 
                 val l = p1.body();
 
 
                 if (l.category != null) {
-                    Log.d("Testttt", "nothing")
-                    l.category?.forEach { Log.d("Testttt", it) }
+                    Log.d(TAG, "nothing")
+                    l.category?.forEach { Log.d(TAG, it) }
                 }
 
 
                 if (l.results?.Android != null) {
-                    Log.d("Testttt", "android not none")
+                    Log.d(TAG, "android not null")
                 }
 
                 if (l.results?.iOS != null) {
-                    Log.d("Testttt", "ios not none")
+                    Log.d(TAG, "ios not null")
                 }
 
                 if (l.results?.休息视频 != null) {
-                    Log.d("Testttt", "休息视频 not none")
+                    Log.d(TAG, "休息视频 not null")
                 }
 
                 if (l.results?.前端 != null) {
-                    Log.d("Testttt", "前端 not none")
+                    Log.d(TAG, "前端 not null")
                 }
 
                 if (l.results?.拓展资源 != null) {
-                    Log.d("Testttt", "拓展资源 not none")
+                    Log.d(TAG, "拓展资源 not null")
                 }
 
                 if (l.results?.瞎推荐 != null) {
-                    Log.d("Testttt", "results not none")
+                    Log.d(TAG, "results not null")
                 }
 
 
                 if (l.results?.福利 != null) {
-                    Log.d("Testttt", "瞎推荐 not none")
+                    Log.d(TAG, "瞎推荐 not null")
                 }
-                l?.results?.Android?.forEach { Log.d("Testttt", it.url) }
+                l?.results?.Android?.forEach { Log.d(TAG, it.url) }
 
 
             }
 
             override fun onFailure(p0: Call<DayResults>?, p1: Throwable?) {
 
-                Log.d("Testttt", p1.toString())
+                Log.d(TAG, p1.toString())
             }
 
         })

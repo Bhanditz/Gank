@@ -68,7 +68,6 @@ class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
                     loadCategoryFinish(result)
                 }
 
-                toast(currentCategory.cname + " is click")
                 return true
             }
 
@@ -129,7 +128,6 @@ class ListActivity : BaseActivity(), CategoryView, recyclerViewOnClickListern {
 
     override fun onClick(pos: Int) {
         val item = categoryResults.results.get(pos)
-        toast(item.desc + item.who)
 
         val intent = Intent(this, WebViewActivity::class.java)
         intent.putExtra("url", item.url)

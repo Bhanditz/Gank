@@ -18,9 +18,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
-            android:name=".ui.activity.ListActivity"
-            android:label="@string/title_activity_list">
+        <activity android:name=".ui.activity.ListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

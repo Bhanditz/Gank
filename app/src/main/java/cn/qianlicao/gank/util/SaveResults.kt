@@ -12,9 +12,9 @@ class SaveResults {
 
         val PATH = "/data/data/cn.qianlicao.gank/files/"
 
-        fun save(categoryResults: CategoryResults, isAppend: Boolean = false) {
+        fun save(categoryResults: CategoryResults) {
 
-            val stream: FileOutputStream = FileOutputStream(File(PATH + categoryResults.category.cname + ".cache"), isAppend)
+            val stream: FileOutputStream = FileOutputStream(File(PATH + categoryResults.category.cname + ".cache"))
             val objectOutputStream: ObjectOutputStream = ObjectOutputStream(stream)
             objectOutputStream.writeObject(categoryResults)
 

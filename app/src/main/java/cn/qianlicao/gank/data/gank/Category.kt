@@ -10,7 +10,7 @@ enum class Category(val cname: String) : Serializable {
     IOS("iOS"),
     RECOMMEND("瞎推荐"),
     EXTENDRESOURCE("拓展资源"),
-    RESTVIDEO("休息视频"),
+    //RESTVIDEO("休息视频"),
     FRONTED("前端"),
-    SEX("福利") ;
+    //SEX("福利") ;
 }
