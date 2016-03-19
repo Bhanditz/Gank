@@ -65,6 +65,7 @@ class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : Recy
 
     fun clear() {
         val size: Int = results.size;
+        results.clear()
         notifyItemRangeRemoved(0, size);
     }
 
@@ -85,7 +86,6 @@ class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : Recy
             card = view.findViewById(R.id.card_view) as CardView
             author = view.findViewById(R.id.author) as TextView
             publishTime = view.findViewById(R.id.publishTime) as TextView
-
             des.onClick { des.text = "OnClick" }
         }
 
