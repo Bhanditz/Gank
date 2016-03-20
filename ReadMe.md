@@ -11,7 +11,7 @@
 * Retrofit
 * OkHttp
 * Material Design (这个可能不算..不过我真的有认真的在学,囧...)
-
+* MVP 架构
 
 上截图吧,这可能是gank相关app里最丑的了..好吧,主要以是学习为主,界面什么的慢慢改~~~
 ![1](http://7fvfrr.com1.z0.glb.clouddn.com/gank%2Fscreenshot.jpg)
