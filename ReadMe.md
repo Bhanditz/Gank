@@ -22,5 +22,5 @@
 
 这里还用到了[@代码家](http://weibo.com/daimajia?refer_flag=1001030103_)的开源组件[NumberProgressBar](https://github.com/daimajia/NumberProgressBar)
 
-有兴趣的可以来交流一下~
-[Github地址](https://github.com/Darin726/Gank)
+有兴趣的可以来我的博客交流一下~
+[http://blog.qianlicao.cn/](http://blog.qianlicao.cn/)
