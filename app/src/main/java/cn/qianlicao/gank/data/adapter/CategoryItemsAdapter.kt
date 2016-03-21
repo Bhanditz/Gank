@@ -40,7 +40,7 @@ class CategoryItemsAdapter(internal var categoryResults: CategoryResults) : Recy
 
         holder.des.text = item.desc
 
-        val year = item.publishedAt!!.year + 1990
+        val year = item.publishedAt!!.year + 1900
         val month = item.publishedAt!!.month + 1
 
         holder.publishTime.text = "发布于:" + year + "年" + month + "月" + item.publishedAt?.date + "日"
